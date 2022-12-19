@@ -15,7 +15,7 @@ export function getData(opts){
 	    //         }
 	    //     }
 	    // });
-	    setTimeout(resolve({age:24}),10);//模仿异步
+	    setTimeout(resolve({name:"jeffrey3",className:"root"}),10);//模仿异步,添加了一个名称是jeffrey3的item
 	})
 	
 }

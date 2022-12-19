@@ -94,7 +94,7 @@ let config = {
         //     arrowFunction: false
         // },
         path: path.join(workingDir, "../dist/" + folderName + "/"), //path指定了本地构建地址(打包后的输出路径)
-        filename: "[name]/bundle.js", //文件打包后的名字【这个name就是entry里面的key，把key做成"app/react_demo"这种类型，因为浏览中的entry文件访问地址是publicPath+filename
+        filename: "[name]/bundle.js", //文件打包后的名字【这个name就是entry里面的key，把key做成"app/react_demo"这种类型【这种输出格式就是文件夹app下有react_demo文件夹，再里面才是bundle.js】，因为浏览中的entry文件访问地址是publicPath+filename
                                       //fileName这样设置，会造成一个问题，这样相当于把入口文件的根设置在了folderName这个文件夹下；要让其他静态资源打包后生成的位置和这里的文件匹配
                                     // 就必须修改图片，wof等这些所有静态资源的filename的格式，它们如果设置成[path][name].[ext]，虽然访问没有问题，但是文件结构和entry入口的js以及css文件错开了
         publicPath: '//localhost:8080/' + folderName + '/' //publicPath指定的是构建后在html里src和href的路径的基础地址（HtmlWebpackPlugin这个插件就是用这个publicPath来生成对应的html），也是url-loading加载的图片和iconfont的基础路径

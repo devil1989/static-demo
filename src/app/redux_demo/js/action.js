@@ -4,7 +4,8 @@ import { getData } from "./model";
 
 //所有actionType，可以单独抽离
 let actionTypes={
-    GET_STUDY_PLAN_INFO : "GET_STUDY_PLAN_INFO"
+    ADD_ITEM : "ADD_ITEM",
+    SET_AGE:"SET_AGE"
 };
 
 
@@ -18,13 +19,20 @@ export function getStudyPlanList(queryData) {
         return getData(param).then(response => {
 
             dispatch({//dispatch需要传入的值
-            	type:actionTypes.GET_STUDY_PLAN_INFO,
+            	type:actionTypes.ADD_ITEM,
             	data:response
             });
         }, xhr => {
         	//展示error信息
         });
     };
+}
+
+export function setAge(age) {
+    return {
+        type:actionTypes.SET_AGE,
+        data:{age}
+    }
 }
 
 

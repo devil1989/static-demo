@@ -17,7 +17,7 @@ module.exports = {
     target: ['web', 'es5'],//解决webpack5的最外层的箭头函数没有被解析成es5的问题
     // target: ['browserslist'],//解决webpack5的最外层的箭头函数没有被解析成es5的问题
 　　entry: {//名称的key不可以有-;webpack.DllPlugin这个插件只支持一个entry，不然生成的json会报错
-        "dll":["vue","vuex"]
+        "dll":["vue","vuex","react","react-dom","react-redux","redux-module"]
         // "react_prod":'react-dom',
         // "vue":"vue",
         // "vue_prod":"../node_modules/vue/dist/vue.runtime.esm.js"
@@ -88,7 +88,14 @@ module.exports = {
     resolve: {
         alias: { //给对应的模块取别名:不会影响文件打包大小，不会因为别名而导致dll重复加载对应的库
             'vue': path.resolve(__dirname, '../node_modules/vue/dist/vue.esm.js'),//默认是运行时版本，没有compile，dev环境下引入需要完整版，vue.esm.js，有编译器才能编译template
-            'vuex': path.resolve(__dirname, '../node_modules/vuex/dist/vuex.esm.js')//默认是运行时版本，没有compile，dev环境下引入需要完整版，vue.esm.js，有编译器才能编译template
+            'vuex': path.resolve(__dirname, '../node_modules/vuex/dist/vuex.esm.js'),//默认是运行时版本，没有compile，dev环境下引入需要完整版，vue.esm.js，有编译器才能编译template
+            'react': path.resolve(__dirname, '../node_modules/react/index.js'),
+            'react-dom': path.resolve(__dirname, '../node_modules/react-dom/index.js'),
+            'react-redux': path.resolve(__dirname, '../node_modules/react-redux/lib/index.js'),
+            'redux': path.resolve(__dirname, '../node_modules/redux/lib/redux.js'),
+            // 'redux-module': path.resolve(__dirname, '../node_modules/react-module/lib/index.js'),
+            'redux-thunk': path.resolve(__dirname, '../node_modules/redux-thunk/lib/index.js')
+            
         }
     },
 　　

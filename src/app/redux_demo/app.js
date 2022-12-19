@@ -1,18 +1,24 @@
 // // 基本不用动
-// import React from 'react';
-// import * as ReactRedux from 'ReactRedux';
-// import * as ReactDOM from 'react-dom';
-// import 'redux-module';
-// import store from './js/store';
-// import Container from './js/container';
-// const Provider=ReactRedux.Provider;
-// window.store=store;
-// ReactDOM.render(
-//     <Provider store={store}>
-// 		<Container />
-// 	</Provider>,
-//     document.getElementById("root")
-// );
+import React from 'react';
+import * as ReactRedux from 'react-redux';
+import * as ReactDOM from 'react-dom';
+import 'redux-module';
+import configStore from './js/store';//store的工厂函数，传入对象以初始化store
+import Container from './js/container';
+import {InitialState} from "./js/state.js";
+const Provider=ReactRedux.Provider;//源码里面用了自定义组件，组件的render里面用了React.createContext('null')，并且把store赋值给了这个组件的state；然后把state赋值给了createContext产生的元素的value，因此所有子组件通过this.context来访问这个store
+var store=configStore(InitialState);
+
+//ReactRedux.Provider的原理是React的context特性，就是只要用const ComponentA = React.createContext('light')创建组件 ,然后用<ComponentA.Provider key={value}>...中间放子组件...</ComponentA.Provider>
+//然后给子组件设置“子组件”.contextType=ComponentA ，然后所有的子组件中，都可以通过this.context[属性名]来获取传入的值，并且修改这个传入的属性，如果子组件用到了这个属性，就会自动重新render
+//redux的Provider就是用React的Context这个功能，来实现所有子组件对store的访问。 https://react.docschina.org/docs/context.html
+//Provider组件内写入Container组件，就是用了React的嵌套【就是等价于Vue的v-slot功能，只是React中只要用{this.props.children}就可以实现组件的嵌套】
+ReactDOM.render(
+    <Provider store={store} >
+		<Container />
+	</Provider>,
+    document.getElementById("root")
+);
 
 
 
